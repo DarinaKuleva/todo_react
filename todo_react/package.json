@@ -1,0 +1,69 @@
+{
+  "name": "todo_react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.0",
+    "stylelint-config-prettier": "^5.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "stylelint src/*.css --fix --config ./.stylelintrc",
+    "eslint": "eslint src/App.js --fix --config ./.eslintrc"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "airbnb"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
+    "prettier": "^1.17.0",
+    "stylelint": "^10.0.1",
+    "stylelint-config-airbnb": "0.0.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-order": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.css": [
+        "node_modules/.bin/prettier --write",
+        "node_modules/.bin/stylelint --fix --config ./.stylelintrc",
+        "git add"
+      ],
+      "*.{js, jsx}": [
+        "node_modules/.bin/eslint --max-warnings=0 --fix",
+        "node_modules/.bin/prettier --write",
+        "git add"
+      ]
+    }
+  }
+}
