@@ -1,35 +1,21 @@
 import React from 'react'
+import todo from '../styles/todoInput.module.css'
 
 export default class TodoItem extends React.PureComponent {
-  constructor(props) {
-    super(props)
-
-    this.state = { value: 'test' }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.addTodo = this.addTodo.bind(this)
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value })
-  }
-
-  addTodo(todo) {
-    if (todo.length > 0) {
-      this.props.addTodo(todo)
-      this.setState({ value: '' })
-    }
+  removeTodo(id) {
+    this.props.removeTodo(id)
   }
 
   render() {
     return (
       <div>
-        <input
-          type="text"
-          value={this.setState.value}
-          onChange={this.handleChange}
-        />
-        <button onClick={() => this.addTodo(this.state.value)}>тык</button>
+        <button
+          className={todo.delete}
+          onClick={e => this.removeTodo(this.props.id)}
+        >
+          DONE
+        </button>
+        {this.props.todo.text}
       </div>
     )
   }

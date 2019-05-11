@@ -1,0 +1,57 @@
+.input {
+  padding: 12px 14px;
+
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+
+  background: #e2223b;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.input:hover {
+  background: #b71227;
+}
+
+.input:active {
+  background: #b71227;
+}
+
+.delete {
+  margin-right: 30px;
+  margin-bottom: 10px;
+  padding: 8px 8px;
+
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+
+  background: #68edca;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.delete:hover {
+  background: #a6d8cb;
+}
+
+.delete:active {
+  background: #a6d8cb;
+}
+
+.text {
+  width: 350px;
+  height: 30px;
+  margin-right: 30px;
+  padding-left: 9px;
+
+  border-color: #a6d8cb;
+  outline: none;
+}
