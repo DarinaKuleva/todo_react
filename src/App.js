@@ -7,28 +7,26 @@ class App extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      todos: [],
-      nextId: 1,
+      todoList: [],
+      nextId: 1
     }
-
-    this.addTodo = this.addTodo.bind(this)
-    this.removeTodo = this.removeTodo.bind(this)
   }
 
-  addTodo(todoText) {
-    let todos = this.state.todos.slice()
-    todos.push({ id: this.state.nextId, text: todoText })
+  addTodo = (todoText) => {
+    let todoList = this.state.todoList.slice()
+    todoList.push({ id: this.state.nextId, text: todoText })
     this.setState({
-      todos: todos,
+      todoList: todoList,
       nextId: this.state.nextId + 1,
     })
   }
 
-  removeTodo(id) {
+  removeTodo = (id) => {
     this.setState({
-      todos: this.state.todos.filter((todo, index) => todo.id !== id),
+      todoList: this.state.todoList.filter((todo, index) => todo.id !== id),
     })
   }
+
   render() {
     return (
       <div>
@@ -36,12 +34,11 @@ class App extends PureComponent {
         <div className={header.input}>
           <TodoInput todoText="" addTodo={this.addTodo} />
           <ul>
-            {this.state.todos.map(todo => {
+            {this.state.todoList.map(todo => {
               return (
                 <TodoItem
                   todo={todo}
                   key={todo.id}
-                  id={todo.id}
                   removeTodo={this.removeTodo}
                 />
               )

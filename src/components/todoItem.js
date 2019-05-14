@@ -1,17 +1,17 @@
 import React from 'react'
 import todo from '../styles/todoInput.module.css'
 
-export default class TodoItem extends React.PureComponent {
+class TodoItem extends React.PureComponent {
   removeTodo(id) {
     this.props.removeTodo(id)
-  }
+       }
 
   render() {
     return (
       <div>
         <button
           className={todo.delete}
-          onClick={e => this.removeTodo(this.props.id)}
+          onClick={e => this.removeTodo(this.props.todo.id)}
         >
           DONE
         </button>
@@ -20,3 +20,5 @@ export default class TodoItem extends React.PureComponent {
     )
   }
 }
+
+export default TodoItem
