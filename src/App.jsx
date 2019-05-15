@@ -34,7 +34,7 @@ class App extends PureComponent {
   addTodo = (todoText) => {
     let todoList = this.state.todoList.slice()
     todoList.push({ id: this.state.nextId, text: todoText })
-    this.setState(function(state) {
+    this.setState((state) => {
       return {
         todoList,
         nextId: state.nextId + 1,
