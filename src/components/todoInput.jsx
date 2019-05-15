@@ -10,6 +10,10 @@ import todo from '../styles/todoInput.module.css'
 // 9. Clear all
 
 class TodoInput extends React.PureComponent {
+  state = {
+    value: '',
+  }
+
   render() {
     return (
       <div>
@@ -28,10 +32,6 @@ class TodoInput extends React.PureComponent {
       </div>
     )
   }
-
-    state = {
-      value: '',
-    }
 
   handleChange = e => {
     this.setState({ value: e.target.value })

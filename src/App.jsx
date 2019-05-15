@@ -4,6 +4,11 @@ import TodoItem from './components/todoItem'
 import header from './styles/header.module.css'
 
 class App extends PureComponent {
+  state = {
+    todoList: [],
+    nextId: 1
+  }
+
   render() {
     return (
       <div>
@@ -26,19 +31,18 @@ class App extends PureComponent {
     )
   }
 
-  state = {
-    todoList: [],
-    nextId: 1
-  }
-
   addTodo = (todoText) => {
     let todoList = this.state.todoList.slice()
     todoList.push({ id: this.state.nextId, text: todoText })
-    this.setState({
-      todoList,
-      nextId: this.state.nextId + 1,
-    })
+    this.setState(function(state) {
+      return {
+        todoList,
+        nextId: state.nextId + 1,
+      }
+    });
   }
+
+
 
   removeTodo = (id) => {
     this.setState({
