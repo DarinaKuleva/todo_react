@@ -1,21 +1,15 @@
 import React from 'react'
-import todo from '../styles/todoInput.module.css'
 
 class TodoItem extends React.PureComponent {
-  removeTodo(id) {
-    this.props.removeTodo(id)
-       }
-
   render() {
+    const {
+      todo: { text },
+    } = this.props
+
     return (
       <div>
-        <button
-          className={todo.delete}
-          onClick={e => this.removeTodo(this.props.todo.id)}
-        >
-          DONE
-        </button>
-        {this.props.todo.text}
+        <button onClick={this.props.removeTodo}>DONE</button>
+        {text}
       </div>
     )
   }

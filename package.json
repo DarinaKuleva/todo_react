@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@csstools/normalize.css": "^9.0.1",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
     "react": "^16.8.6",
@@ -16,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "stylelint src/*.css --fix --config ./.stylelintrc",
-    "eslint": "eslint src/App.js --fix --config ./.eslintrc"
+    "eslint": "eslint src/App.jsx --fix --config ./.eslintrc"
   },
   "eslintConfig": {
     "extends": [
