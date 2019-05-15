@@ -3,26 +3,6 @@ import TodoInput from './components/todoInput'
 import TodoItem from './components/todoItem'
 
 class App extends PureComponent {
-  state = {
-    todoList: [],
-    nextId: 1
-  }
-
-  addTodo = (todoText) => {
-    let todoList = this.state.todoList.slice()
-    todoList.push({ id: this.state.nextId, text: todoText })
-    this.setState({
-      todoList,
-      nextId: this.state.nextId + 1,
-    })
-  }
-
-  removeTodo = (id) => {
-    this.setState({
-      todoList: this.state.todoList.filter((todo) => todo.id !== id),
-    })
-  }
-
   render() {
     return (
       <div>
@@ -43,6 +23,26 @@ class App extends PureComponent {
         </div>
       </div>
     )
+  }
+
+  state = {
+    todoList: [],
+    nextId: 1
+  }
+
+  addTodo = (todoText) => {
+    let todoList = this.state.todoList.slice()
+    todoList.push({ id: this.state.nextId, text: todoText })
+    this.setState({
+      todoList,
+      nextId: this.state.nextId + 1,
+    })
+  }
+
+  removeTodo = (id) => {
+    this.setState({
+      todoList: this.state.todoList.filter((todo) => todo.id !== id),
+    })
   }
 }
 
