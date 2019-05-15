@@ -1,11 +1,9 @@
 import React from 'react'
 import todo from '../styles/todoInput.module.css'
 //TODO:
-// 1. убрать конструкторы
+
 // 2. по энтеру добавлять
-// 3. разберись со стилями
-// +4. Методы вниз
-// +5. jsx
+
 // 6. PropTypes https://reactjs.org/docs/typechecking-with-proptypes.html
 // 7. Delete and Done
 // 8. Done 8 of 15
@@ -31,12 +29,9 @@ class TodoInput extends React.PureComponent {
     )
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
+    state = {
       value: '',
     }
-  }
 
   handleChange = e => {
     this.setState({ value: e.target.value })
@@ -50,7 +45,6 @@ class TodoInput extends React.PureComponent {
       this.setState({ value: '' })
     }
   }
-
 }
 
 export default TodoInput
