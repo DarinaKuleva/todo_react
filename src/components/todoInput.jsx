@@ -21,6 +21,7 @@ class TodoInput extends React.PureComponent {
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
         />
         <button
           onClick={this.addTodo}
@@ -33,6 +34,12 @@ class TodoInput extends React.PureComponent {
 
   handleChange = e => {
     this.setState({ value: e.target.value })
+  }
+
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      console.log ('+1');
+    }
   }
 
   addTodo = () => {
