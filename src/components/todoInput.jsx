@@ -1,4 +1,5 @@
 import React from 'react'
+import todo from '../styles/todoInput.module.css'
 //TODO:
 // 1. убрать конструкторы
 // 2. по энтеру добавлять
@@ -16,11 +17,16 @@ class TodoInput extends React.PureComponent {
       <div>
         <input
           placeholder="I want to do..."
+          className={todo.text}
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
         />
-        <button onClick={this.addTodo}>Do It!</button>
+        <button
+          onClick={this.addTodo}
+          className={todo.input}>
+          Do It!
+        </button>
       </div>
     )
   }
