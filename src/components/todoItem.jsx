@@ -12,7 +12,7 @@ class TodoItem extends React.PureComponent {
         <button
           // className={todo.delete}
           onClick={this.props.removeTodo}>
-          DONE
+          DELETE
         </button>
         {text}
       </div>

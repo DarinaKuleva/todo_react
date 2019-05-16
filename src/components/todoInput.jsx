@@ -1,7 +1,7 @@
 import React from 'react'
 // import todo from '../styles/todoInput.module.css'
 //TODO:
-// 2. по энтеру добавлять
+// 2. ?по энтеру добавлять
 // 6. PropTypes https://reactjs.org/docs/typechecking-with-proptypes.html
 // 7. Delete and Done
 // 8. Done 8 of 15
