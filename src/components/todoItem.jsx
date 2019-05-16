@@ -14,6 +14,10 @@ class TodoItem extends React.PureComponent {
           onClick={this.props.removeTodo}>
           DELETE
         </button>
+        <button
+          onClick={this.props.crossTodo}>
+          DONE
+        </button>
         {text}
       </div>
     )

@@ -18,39 +18,49 @@ class App extends PureComponent {
         <div
           // className={header.input}
         >
-          <TodoInput addTodo={this.addTodo} />
+          <TodoInput addTodo={ this.addTodo }/>
           <ul>
-            {this.state.todoList.map(todo => {
+            { this.state.todoList.map( todo => {
               return (
                 <TodoItem
-                  todo={todo}
-                  key={todo.id}
-                  removeTodo={() => this.removeTodo(todo.id)}
+                  todo={ todo }
+                  key={ todo.id }
+                  removeTodo={ () => this.removeTodo( todo.id ) }
+                  crossTodo={ () => this.crossTodo() }
                 />
               )
-            })}
+            } ) }
           </ul>
         </div>
       </div>
     )
   }
 
-  addTodo = (todoText) => {
+  addTodo = ( todoText ) => {
     let todoList = this.state.todoList.slice()
-    todoList.push({ id: this.state.nextId, text: todoText })
-    this.setState((state) => {
+    todoList.push( { id: this.state.nextId, text: todoText } )
+    this.setState( ( state ) => {
       return {
         todoList,
         nextId: state.nextId + 1,
       }
-    });
+    } );
   }
 
-  removeTodo = (id) => {
-    this.setState({
-      todoList: this.state.todoList.filter((todo) => todo.id !== id),
-    })
+  removeTodo = ( id ) => {
+    this.setState( {
+      todoList: this.state.todoList.filter( ( todo ) => todo.id !== id )
+    } )
+  }
+
+
+  crossTodo = () => {
+    console.log( 'Здесь будет реализовано вычеркивание, когда будут подключены стили' );
   }
 }
+//   crossTodo = () => {
+//       console.log('Здесь будет реализовано вычеркивание, когда будут подключены стили');
+//   }
+// }
 
 export default App
