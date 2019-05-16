@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import TodoInput from './components/todoInput'
 import TodoItem from './components/todoItem'
+import ClearButton from './components/clearButton'
 // import header from './styles/header.module.css'
 
 class App extends PureComponent {
@@ -31,6 +32,7 @@ class App extends PureComponent {
               )
             } ) }
           </ul>
+          <ClearButton />>
         </div>
       </div>
     )
@@ -56,6 +58,10 @@ class App extends PureComponent {
 
   crossTodo = () => {
     console.log( 'Здесь будет реализовано вычеркивание, когда будут подключены стили' );
+  }
+
+  clearAll = () => {
+    console.log( 'clear' );
   }
 }
 //   crossTodo = () => {
