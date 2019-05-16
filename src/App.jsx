@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import TodoInput from './components/todoInput'
 import TodoItem from './components/todoItem'
-import header from './styles/header.module.css'
+// import header from './styles/header.module.css'
 
 class App extends PureComponent {
   state = {
@@ -12,8 +12,12 @@ class App extends PureComponent {
   render() {
     return (
       <div>
-        <h1 className={header.title}>My ToDo List</h1>
-        <div className={header.input}>
+        <h1
+          // className={header.title}
+        >My ToDo List</h1>
+        <div
+          // className={header.input}
+        >
           <TodoInput addTodo={this.addTodo} />
           <ul>
             {this.state.todoList.map(todo => {

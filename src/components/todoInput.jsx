@@ -1,5 +1,5 @@
 import React from 'react'
-import todo from '../styles/todoInput.module.css'
+// import todo from '../styles/todoInput.module.css'
 //TODO:
 // 2. по энтеру добавлять
 // 6. PropTypes https://reactjs.org/docs/typechecking-with-proptypes.html
@@ -17,7 +17,7 @@ class TodoInput extends React.PureComponent {
       <div>
         <input
           placeholder="I want to do..."
-          className={todo.text}
+          // className={todo.text}
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
@@ -25,7 +25,8 @@ class TodoInput extends React.PureComponent {
         />
         <button
           onClick={this.addTodo}
-          className={todo.input}>
+          // className={todo.input}
+          >
           Do It!
         </button>
       </div>
