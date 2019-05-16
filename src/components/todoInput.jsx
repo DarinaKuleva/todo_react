@@ -39,7 +39,13 @@ class TodoInput extends React.PureComponent {
 
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      console.log ('+1');
+      this.setState({ value: e.target.value })
+      const { value } = this.state
+
+      if (value.length > 0) {
+        this.props.addTodo(value)
+        this.setState({ value: '' })
+      }
     }
   }
 

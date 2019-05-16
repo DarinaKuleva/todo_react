@@ -46,8 +46,6 @@ class App extends PureComponent {
     });
   }
 
-
-
   removeTodo = (id) => {
     this.setState({
       todoList: this.state.todoList.filter((todo) => todo.id !== id),
