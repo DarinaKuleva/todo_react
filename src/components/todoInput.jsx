@@ -24,7 +24,7 @@ class TodoInput extends React.PureComponent {
           onKeyDown={this.handleKeyDown}
         />
         <button
-          onClick={this.addTodo}
+          onClick={this.addPoint}
           // className={todo.input}
           >
           Do It!
@@ -49,7 +49,7 @@ class TodoInput extends React.PureComponent {
     }
   }
 
-  addTodo = () => {
+  addPoint = () => {
     const { value } = this.state
 
     if (value.length > 0) {

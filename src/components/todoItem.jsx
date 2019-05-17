@@ -5,17 +5,20 @@ class TodoItem extends React.PureComponent {
   render() {
     const {
       todo: { text },
+      removeTodo,
+      crossTodo
     } = this.props
+
 
     return (
       <div>
         <button
           // className={todo.delete}
-          onClick={this.props.removeTodo}>
+          onClick={ removeTodo }>
           DELETE
         </button>
         <button
-          onClick={this.props.crossTodo}>
+          onClick={ crossTodo }>
           DONE
         </button>
         {text}

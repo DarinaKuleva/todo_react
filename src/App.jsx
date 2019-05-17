@@ -27,12 +27,13 @@ class App extends PureComponent {
                   todo={ todo }
                   key={ todo.id }
                   removeTodo={ () => this.removeTodo( todo.id ) }
-                  crossTodo={ () => this.crossTodo() }
+                  crossTodo={ this.crossTodo }
                 />
               )
             } ) }
           </ul>
-          <ClearButton />>
+          <ClearButton
+            clearAll={ this.clearAll } />
         </div>
       </div>
     )
@@ -51,10 +52,9 @@ class App extends PureComponent {
 
   removeTodo = ( id ) => {
     this.setState( {
-      todoList: this.state.todoList.filter( ( todo ) => todo.id !== id )
+      todoList: this.state.todoList.filter( todo => todo.id !== id )
     } )
   }
-
 
   crossTodo = () => {
     console.log( 'Здесь будет реализовано вычеркивание, когда будут подключены стили' );
@@ -64,9 +64,5 @@ class App extends PureComponent {
     console.log( 'clear' );
   }
 }
-//   crossTodo = () => {
-//       console.log('Здесь будет реализовано вычеркивание, когда будут подключены стили');
-//   }
-// }
 
 export default App
