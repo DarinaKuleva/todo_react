@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import TodoInput from './components/todoInput'
 import TodoItem from './components/todoItem'
 import ClearButton from './components/clearButton'
-// import header from './styles/header.module.css'
+import header from './styles/header.module.css'
 
 class App extends PureComponent {
   state = {
@@ -14,10 +14,10 @@ class App extends PureComponent {
     return (
       <div>
         <h1
-          // className={header.title}
+          className={header.title}
         >My ToDo List</h1>
         <div
-          // className={header.input}
+          className={header.input}
         >
           <TodoInput addTodo={ this.addTodo }/>
           <ul>

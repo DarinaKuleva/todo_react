@@ -1,5 +1,5 @@
 import React from 'react'
-// import todo from '../styles/todoInput.module.css'
+import todo from '../styles/todoInput.module.css'
 
 class TodoItem extends React.PureComponent {
   render() {
@@ -13,7 +13,7 @@ class TodoItem extends React.PureComponent {
     return (
       <div>
         <button
-          // className={todo.delete}
+          className={todo.delete}
           onClick={ removeTodo }>
           DELETE
         </button>
