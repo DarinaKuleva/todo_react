@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
-import TodoInput from './components/todoInput'
-import TodoItem from './components/todoItem'
-import ClearButton from './components/clearButton'
-import header from './styles/header.module.css'
+import TodoInput from './todoInput'
+import TodoItem from './todoItem'
+import ClearButton from './clearButton'
+import header from '../styles/header.module.css'
 import { Link } from 'react-router-dom'
 
 class App extends PureComponent {
@@ -43,7 +43,7 @@ class App extends PureComponent {
 
   addTodo = ( todoText ) => {
     let todoList = this.state.todoList.slice()
-    todoList.push( { id: this.state.nextId, text: todoText, done: false } )
+    todoList.push( { id: this.state.nextId, text: todoText, done: false, label: '', createdAtdate: '', doneAtDat: '' } )
     this.setState( ( state ) => {
       return {
         todoList,
