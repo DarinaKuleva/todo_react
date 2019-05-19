@@ -3,6 +3,7 @@ import TodoInput from './components/todoInput'
 import TodoItem from './components/todoItem'
 import ClearButton from './components/clearButton'
 import header from './styles/header.module.css'
+import { Link } from 'react-router-dom'
 
 class App extends PureComponent {
   state = {
@@ -35,6 +36,7 @@ class App extends PureComponent {
           <ClearButton
             clearAll={ this.clearAll } />
         </div>
+        <Link to='/'>HOME</Link>
       </div>
     )
   }
@@ -55,10 +57,6 @@ class App extends PureComponent {
       todoList: this.state.todoList.filter( todo => todo.id !== id )
     } )
   }
-
-  //crossTodo = (id) => {
-    //document.getElementById(id).color = 'red';
- // }
 
   crossTodo = (id) => this.setState({
     todoList: this.state.todoList.map((index) => (

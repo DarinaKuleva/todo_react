@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
 
 class Home extends PureComponent {
 
@@ -6,6 +7,7 @@ class Home extends PureComponent {
     return (
       <div>
         <h1>Привет Медвед!</h1>
+        <Link to='/todo'>TODO</Link>
       </div>
     )
   }
