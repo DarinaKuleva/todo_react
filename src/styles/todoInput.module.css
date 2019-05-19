@@ -54,3 +54,11 @@
   border-color: #a6d8cb;
   outline: none;
 }
+
+.test {
+  color: black;
+}
+
+.done {
+  text-decoration: line-through;
+}

@@ -1,11 +1,9 @@
 import React from 'react'
 import todo from '../styles/todoInput.module.css'
 //TODO:
-// 2. ?по энтеру добавлять
 // 6. PropTypes https://reactjs.org/docs/typechecking-with-proptypes.html
 // 7. Delete and Done
 // 8. Done 8 of 15
-// 9. Clear all
 
 class TodoInput extends React.PureComponent {
   state = {
@@ -39,13 +37,7 @@ class TodoInput extends React.PureComponent {
 
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      this.setState({ value: e.target.value })
-      const { value } = this.state
-
-      if (value.length > 0) {
-        this.props.addTodo(value)
-        this.setState({ value: '' })
-      }
+      this.addPoint();
     }
   }
 

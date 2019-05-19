@@ -41,7 +41,7 @@ class App extends PureComponent {
 
   addTodo = ( todoText ) => {
     let todoList = this.state.todoList.slice()
-    todoList.push( { id: this.state.nextId, text: todoText } )
+    todoList.push( { id: this.state.nextId, text: todoText, done: false } )
     this.setState( ( state ) => {
       return {
         todoList,
@@ -57,7 +57,9 @@ class App extends PureComponent {
   }
 
   crossTodo = () => {
-    console.log( 'Здесь будет реализовано вычеркивание, когда будут подключены стили' );
+    //document.getElementById(id).color = 'red';
+console.log('тык');
+
   }
 
   clearAll = () => {
