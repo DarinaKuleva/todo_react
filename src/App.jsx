@@ -27,7 +27,7 @@ class App extends PureComponent {
                   todo={ todo }
                   key={ todo.id }
                   removeTodo={ () => this.removeTodo( todo.id ) }
-                  crossTodo={ this.crossTodo }
+                  crossTodo={ () => this.crossTodo( todo.id ) }
                 />
               )
             } ) }
@@ -56,11 +56,17 @@ class App extends PureComponent {
     } )
   }
 
-  crossTodo = () => {
+  //crossTodo = (id) => {
     //document.getElementById(id).color = 'red';
-console.log('тык');
+ // }
 
-  }
+  crossTodo = (id) => this.setState({
+    todoList: this.state.todoList.map((index) => (
+      id === index.id
+        ? ({ id: index.id, text: index.text, done: true })
+        : { id: index.id, text: index.text, done: false }),
+    ),
+  })
 
   clearAll = () => {
     this.setState( {

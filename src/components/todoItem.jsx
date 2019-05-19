@@ -1,5 +1,6 @@
 import React from 'react'
 import todo from '../styles/todoInput.module.css'
+import done from '../styles/todoInput.module.css'
 
 class TodoItem extends React.PureComponent {
   render() {
@@ -11,7 +12,7 @@ class TodoItem extends React.PureComponent {
 
 
     return (
-      <div>
+      <div className={ done ? 'div.done' : '' }>
         <button
           className={todo.delete}
           onClick={ crossTodo }>

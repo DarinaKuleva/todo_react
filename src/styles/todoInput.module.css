@@ -55,10 +55,6 @@
   outline: none;
 }
 
-.test {
-  color: black;
-}
-
-.done {
+div.done {
   text-decoration: line-through;
 }
