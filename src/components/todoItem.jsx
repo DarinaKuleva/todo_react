@@ -14,14 +14,15 @@ class TodoItem extends React.PureComponent {
       <div>
         <button
           className={todo.delete}
-          onClick={ removeTodo }>
-          DELETE
-        </button>
-        <button
           onClick={ crossTodo }>
           DONE
         </button>
         {text}
+        <button
+          className={todo.delete}
+          onClick={ removeTodo }>
+          DELETE
+        </button>
       </div>
     )
   }

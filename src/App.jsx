@@ -61,7 +61,9 @@ class App extends PureComponent {
   }
 
   clearAll = () => {
-    console.log( 'clear' );
+    this.setState( {
+      todoList: []
+    } )
   }
 }
 
