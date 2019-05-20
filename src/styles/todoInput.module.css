@@ -58,3 +58,10 @@
 .done {
   text-decoration: line-through;
 }
+
+.counter {
+  margin-bottom: 20px;
+  margin-left: 40px;
+
+  color: #b71227;
+}

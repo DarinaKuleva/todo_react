@@ -3,11 +3,13 @@ import TodoInput from './todoInput'
 import TodoItem from './todoItem'
 import ClearButton from './clearButton'
 import header from '../styles/header.module.css'
+import todo from '../styles/todoInput.module.css'
 import { Link } from 'react-router-dom'
 
 class App extends PureComponent {
   state = {
     todoList: [],
+    doneCounter: 0,
     nextId: 1,
     createdAtdate: 0
   }
@@ -34,6 +36,7 @@ class App extends PureComponent {
               )
             } ) }
           </ul>
+          <div className={todo.counter}> Done { this.state.doneCounter } of { this.state.todoList.length}</div>
           <ClearButton
             clearAll={ this.clearAll } />
         </div>
@@ -59,17 +62,22 @@ class App extends PureComponent {
     } )
   }
 
-  crossTodo = (id) => this.setState({
+  crossTodo = (id) => this.setState((state)=>{
     todoList: this.state.todoList.map((index) => (
       id === index.id
         ? ({ id: index.id, text: index.text, label: this.state.currentLabel, done: true, doneAtDate: index.text })
         : { id: index.id, text: index.text, label:this.state.currentLabel, done: false, createdAtdate: index.text }),
-    ),
-  })
+    )
+    return {
+      doneCounter: state.doneCounter+1,
+  }
+  }
+ )
 
   clearAll = () => {
     this.setState( {
-      todoList: []
+      todoList: [],
+      doneCounter: 0
     } )
   }
 }
