@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom'
 class App extends PureComponent {
   state = {
     todoList: [],
-    nextId: 1
+    nextId: 1,
+    createdAtdate: 0
   }
 
   render() {
@@ -43,7 +44,7 @@ class App extends PureComponent {
 
   addTodo = ( todoText ) => {
     let todoList = this.state.todoList.slice()
-    todoList.push( { id: this.state.nextId, text: todoText, done: false, label: '', createdAtdate: '', doneAtDat: '' } )
+    todoList.push( { id: this.state.nextId, text: todoText, done: false, label: this.state.currentLabel, createdAtdate : todoText } )
     this.setState( ( state ) => {
       return {
         todoList,
@@ -61,8 +62,8 @@ class App extends PureComponent {
   crossTodo = (id) => this.setState({
     todoList: this.state.todoList.map((index) => (
       id === index.id
-        ? ({ id: index.id, text: index.text, done: true })
-        : { id: index.id, text: index.text, done: false }),
+        ? ({ id: index.id, text: index.text, label: this.state.currentLabel, done: true, doneAtDate: index.text })
+        : { id: index.id, text: index.text, label:this.state.currentLabel, done: false, createdAtdate: index.text }),
     ),
   })
 

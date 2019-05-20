@@ -1,27 +1,28 @@
 import React from 'react'
 import todo from '../styles/todoInput.module.css'
-import done from '../styles/todoInput.module.css'
+
+import './crossTodo.css'
 
 class TodoItem extends React.PureComponent {
   render() {
     const {
-      todo: { text },
+      todo: { text, done },
       removeTodo,
-      crossTodo
+      crossTodo,
     } = this.props
 
 
     return (
-      <div className={ done ? 'div.done' : '' }>
+      <div className={done ? 'done' : ''} >
         <button
           className={todo.delete}
-          onClick={ crossTodo }>
+          onClick={crossTodo}>
           DONE
         </button>
         {text}
         <button
           className={todo.delete}
-          onClick={ removeTodo }>
+          onClick={removeTodo}>
           DELETE
         </button>
       </div>

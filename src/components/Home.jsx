@@ -6,7 +6,7 @@ class Home extends PureComponent {
   render() {
     return (
       <div>
-        <h1>Привет Медвед!</h1>
+        <h1>Привет, Медвед!</h1>
         <Link to='/todo'>TODO</Link>
       </div>
     )
