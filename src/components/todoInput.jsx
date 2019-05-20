@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 import todo from '../styles/todoInput.module.css'
-//TODO:
-// 6. PropTypes https://reactjs.org/docs/typechecking-with-proptypes.html
 
 
 class TodoInput extends React.PureComponent {
@@ -49,5 +49,9 @@ class TodoInput extends React.PureComponent {
     }
   }
 }
+
+TodoInput.propTypes = {
+  addTodo: PropTypes.func
+};
 
 export default TodoInput

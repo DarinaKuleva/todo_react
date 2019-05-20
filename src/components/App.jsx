@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react'
 import TodoInput from './todoInput'
 import TodoItem from './todoItem'
+import { Link } from 'react-router-dom'
 import ClearButton from './clearButton'
+
 import header from '../styles/header.module.css'
 import todo from '../styles/todoInput.module.css'
-import { Link } from 'react-router-dom'
 
 class App extends PureComponent {
   state = {
@@ -63,12 +64,13 @@ class App extends PureComponent {
   }
 
   crossTodo = (id) => this.setState((state)=>{
-    todoList: this.state.todoList.map((index) => (
+    let todoList = this.state.todoList.map((index) => (
       id === index.id
         ? ({ id: index.id, text: index.text, label: this.state.currentLabel, done: true, doneAtDate: index.text })
-        : { id: index.id, text: index.text, label:this.state.currentLabel, done: false, createdAtdate: index.text }),
+        : { ...index }),
     )
     return {
+      todoList,
       doneCounter: state.doneCounter+1,
   }
   }

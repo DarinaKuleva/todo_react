@@ -1,6 +1,7 @@
 import React from 'react'
-import todo from '../styles/todoInput.module.css'
+import PropTypes from 'prop-types';
 
+import todo from '../styles/todoInput.module.css'
 import './crossTodo.css'
 
 class TodoItem extends React.PureComponent {
@@ -29,5 +30,12 @@ class TodoItem extends React.PureComponent {
     )
   }
 }
+
+TodoItem.propTypes = {
+  removeTodo: PropTypes.func,
+  crossTodo: PropTypes.func,
+  text: PropTypes.string,
+  done: PropTypes.bool
+};
 
 export default TodoItem

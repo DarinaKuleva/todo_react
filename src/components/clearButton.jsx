@@ -1,4 +1,5 @@
 import React from 'react'
+
 import todo from '../styles/todoInput.module.css'
 
 const ClearButton = ( { clearAll } ) => {
