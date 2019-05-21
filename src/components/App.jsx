@@ -3,7 +3,7 @@ import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import { Link } from 'react-router-dom'
 import ClearButton from './ClearButton'
-import NBSP from './NBSP'
+import { NBSP } from './NBSP'
 
 import header from '../styles/header.module.css'
 import todo from '../styles/todoInput.module.css'
@@ -71,18 +71,17 @@ class App extends PureComponent {
     } )
   }
 
-  crossTodo = (id) => this.setState((state)=>{
-    let todoList = this.state.todoList.map((index) => (
-      id === index.id
-        ? ({ ...index, done: true, doneAtDate: new Date() })
-        : { ...index }),
+  crossTodo = (id) => {
+    let todoList = this.state.todoList.map(todoItem => (
+      id === todoItem.id
+        ? ({ ...todoItem, done: true, doneAtDate: new Date() })
+        : { ...todoItem }),
     )
-    return {
+    this.setState({
       todoList,
-      doneCounter: state.doneCounter+1,
+      doneCounter: this.state.doneCounter+1
+    })
   }
-  }
- )
 
   clearAll = () => {
     this.setState( {

@@ -1,5 +1,3 @@
 import React from 'react'
 
-const NBSP = () => <>&nbsp;</>
-
-export default NBSP
+export const NBSP = () => <>&nbsp;</>
