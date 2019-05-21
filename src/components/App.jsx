@@ -72,6 +72,7 @@ class App extends PureComponent {
   }
 
   crossTodo = (id) => {
+
     let todoList = this.state.todoList.map(todoItem => (
       id === todoItem.id
         ? ({ ...todoItem, done: true, doneAtDate: new Date() })
@@ -82,6 +83,7 @@ class App extends PureComponent {
       doneCounter: this.state.doneCounter+1
     })
   }
+  
 
   clearAll = () => {
     this.setState( {
