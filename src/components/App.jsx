@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
-import TodoInput from './todoInput'
-import TodoItem from './todoItem'
+import TodoInput from './TodoInput'
+import TodoItem from './TodoItem'
 import { Link } from 'react-router-dom'
-import ClearButton from './clearButton'
+import ClearButton from './ClearButton'
+import NBSP from './NBSP'
 
 import header from '../styles/header.module.css'
 import todo from '../styles/todoInput.module.css'
@@ -11,8 +12,7 @@ class App extends PureComponent {
   state = {
     todoList: [],
     doneCounter: 0,
-    nextId: 1,
-    createdAtdate: 0
+    nextId: 1
   }
 
   render() {
@@ -37,7 +37,15 @@ class App extends PureComponent {
               )
             } ) }
           </ul>
-          <div className={todo.counter}> Done { this.state.doneCounter } of { this.state.todoList.length}</div>
+          <div className={todo.counter}>
+            Done
+            <NBSP/>
+            { this.state.doneCounter }
+            <NBSP/>
+            of
+            <NBSP/>
+            { this.state.todoList.length}
+          </div>
           <ClearButton
             clearAll={ this.clearAll } />
         </div>
@@ -48,7 +56,7 @@ class App extends PureComponent {
 
   addTodo = ( todoText ) => {
     let todoList = this.state.todoList.slice()
-    todoList.push( { id: this.state.nextId, text: todoText, done: false, label: this.state.currentLabel, createdAtdate : todoText } )
+    todoList.push( { id: this.state.nextId, text: todoText, done: false, createdAtdate : new Date(), doneAtDate: null } )
     this.setState( ( state ) => {
       return {
         todoList,
@@ -66,7 +74,7 @@ class App extends PureComponent {
   crossTodo = (id) => this.setState((state)=>{
     let todoList = this.state.todoList.map((index) => (
       id === index.id
-        ? ({ id: index.id, text: index.text, label: this.state.currentLabel, done: true, doneAtDate: index.text })
+        ? ({ ...index, done: true, doneAtDate: new Date() })
         : { ...index }),
     )
     return {

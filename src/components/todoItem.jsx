@@ -5,16 +5,26 @@ import todo from '../styles/todoInput.module.css'
 import './crossTodo.css'
 
 class TodoItem extends React.PureComponent {
+
+  static propTypes = {
+    removeTodo: PropTypes.func.isRequired,
+    crossTodo: PropTypes.func.isRequired,
+    todo: PropTypes.object.isRequired,
+  }
+
   render() {
     const {
-      todo: { text, done },
+      todo: {
+        text,
+        done,
+      },
       removeTodo,
       crossTodo,
     } = this.props
 
 
     return (
-      <div className={done ? 'done' : ''} >
+      <div className={done ? 'done' : ''}>
         <button
           className={todo.delete}
           onClick={crossTodo}>
@@ -30,12 +40,5 @@ class TodoItem extends React.PureComponent {
     )
   }
 }
-
-TodoItem.propTypes = {
-  removeTodo: PropTypes.func,
-  crossTodo: PropTypes.func,
-  text: PropTypes.string,
-  done: PropTypes.bool
-};
 
 export default TodoItem

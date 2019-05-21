@@ -5,6 +5,11 @@ import todo from '../styles/todoInput.module.css'
 
 
 class TodoInput extends React.PureComponent {
+
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired
+  };
+
   state = {
     value: '',
   }
@@ -49,9 +54,5 @@ class TodoInput extends React.PureComponent {
     }
   }
 }
-
-TodoInput.propTypes = {
-  addTodo: PropTypes.func
-};
 
 export default TodoInput
