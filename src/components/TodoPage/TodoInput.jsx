@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
-import todo from '../styles/todoInput.module.css'
-
+import todo from '../../styles/todoInput.module.css'
 
 class TodoInput extends React.PureComponent {
 
@@ -11,7 +10,7 @@ class TodoInput extends React.PureComponent {
   };
 
   state = {
-    value: '',
+    value: ''
   }
 
   render() {
@@ -40,9 +39,7 @@ class TodoInput extends React.PureComponent {
   }
 
   handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      this.addPoint();
-    }
+    if (e.key === 'Enter') this.addPoint();
   }
 
   addPoint = () => {
