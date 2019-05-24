@@ -19,7 +19,7 @@ class TodoItem extends React.PureComponent {
         done,
       },
       removeTodo,
-      crossTodo
+      crossOutTodo
     } = this.props
 
     return (
@@ -27,7 +27,7 @@ class TodoItem extends React.PureComponent {
         { !done &&
           <button
             className={todo.delete}
-            onClick={crossTodo}>
+            onClick={crossOutTodo}>
             DONE
           </button>
         }

@@ -29,7 +29,7 @@ class App extends PureComponent {
                 todo={ todo }
                 key={ todo.id }
                 removeTodo={ () => this.removeTodo( todo.id ) }
-                crossTodo={ () => this.crossTodo( todo.id ) }
+                crossOutTodo={ () => this.crossOutTodo( todo.id ) }
               />
             ) ) }
           </ul>
@@ -55,7 +55,7 @@ class App extends PureComponent {
       id: this.state.nextId,
       text: todoText,
       done: false,
-      createdAtdate: new Date(),
+      createdAtDate: new Date(),
       doneAtDate: null,
     }
 
@@ -67,7 +67,7 @@ class App extends PureComponent {
     } )
   }
 
-  crossTodo = (id) => {
+  crossOutTodo = (id) => {
     const todoList = this.state.todoList.map(todoItem => (
       id === todoItem.id
         ? { ...todoItem, done: true, doneAtDate: new Date() }
