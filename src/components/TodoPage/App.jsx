@@ -4,18 +4,24 @@ import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import ClearButton from './ClearButton'
 import { NBSP } from '../Additions/NBSP'
+import clearAll from '../../actions/clearAll'
+import addTodo from '../../actions/addTodo'
+import crossOutTodo from '../../actions/crossOutTodo'
+import removeTodo from '../../actions/removeTodo'
+import { connect } from 'react-redux'
 
 import header from '../../styles/header.module.css'
 import todo from '../../styles/todoInput.module.css'
 
 class App extends PureComponent {
   state = {
-    todoList: [],
     doneCounter: 0,
     nextId: 1,
   }
 
   render() {
+    // const doneCounter = f(this.props.todoList); посчитать из состояния и убрать из конекта, убрать this.state
+    //диструкруризация this.props
     return (
       <div>
         <h1 className={ header.title }>
@@ -24,7 +30,7 @@ class App extends PureComponent {
         <div className={ header.input }>
           <TodoInput addTodo={ this.addTodo }/>
           <ul>
-            { this.state.todoList.map( todo => (
+            { this.props.todoList.map( todo => (
               <TodoItem
                 todo={ todo }
                 key={ todo.id }
@@ -40,7 +46,7 @@ class App extends PureComponent {
             <NBSP/>
             of
             <NBSP/>
-            { this.state.todoList.length }
+            { this.props.todoList.length }
           </div>
           <ClearButton
             clearAll={ this.clearAll }/>
@@ -61,10 +67,10 @@ class App extends PureComponent {
 
     this.setState( ( state ) => {
       return {
-        todoList: [...state.todoList, newTask],
-        nextId: state.nextId + 1,
+        nextId: state.nextId + 1
       }
     } )
+    this.props.dispatch(addTodo(newTask))
   }
 
   crossOutTodo = (id) => {
@@ -78,12 +84,14 @@ class App extends PureComponent {
       todoList,
       doneCounter: this.state.doneCounter + 1,
     } )
+    this.props.dispatch(crossOutTodo(this.state.todoList, this.state.doneCounter))
   }
 
   removeTodo = ( id ) => {
     this.setState( {
       todoList: this.state.todoList.filter( todo => todo.id !== id ),
     } )
+    this.props.dispatch(removeTodo(this.state.todoList))
   }
 
 
@@ -92,7 +100,14 @@ class App extends PureComponent {
       todoList: [],
       doneCounter: 0,
     } )
-  }
+    this.props.dispatch(clearAll(this.state.todoList, this.state.doneCounter))
+  };
 }
 
-export default App
+//переделать экспорт-вынести стэйт
+export default connect(state => {
+  return {
+    todoList: state.todoList,
+    doneCounter: state.doneCounter
+  }
+})(App)
