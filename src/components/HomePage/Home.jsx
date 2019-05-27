@@ -1,32 +1,39 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import todo from '../../styles/todoInput.module.css'
 import { NBSP } from '../Additions/NBSP'
 import { connect } from 'react-redux'
 
+import todo from '../../styles/todoInput.module.css'
 
-class Home extends PureComponent {
-  render() {
-    return (
+
+const Home = ({todoList}) => {
+  console.log(todoList)
+  const allTask = todoList.length;
+  console.log(allTask)
+  // const allTaskDone = todoList.filter(todo => todo.done)
+  return (
       <>
         <h1>Привет, Медвед!</h1>
         <div className={ todo.counter }>
           Done
           <NBSP/>
-          <p>тут будет done counter</p>
+
           <NBSP/>
           of
           <NBSP/>
-          {this.props.todoList.length}
+          { allTask }
         </div>
         <Link to="/todo">TODO</Link>
       </>
     )
-  }
+
 }
 
-export default connect(state => {
-  return {
-    todoList: state.todoList
-  }
-})(Home)
+
+const mapToState = (state) => {
+  return {todoList: state};
+}
+
+const WrappedHome = connect(mapToState)(Home)
+
+export default WrappedHome;

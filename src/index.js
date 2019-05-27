@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import { render } from 'react-dom'
 import Main from './Main'
 import { store } from './store/index'
 import { BrowserRouter } from 'react-router-dom'

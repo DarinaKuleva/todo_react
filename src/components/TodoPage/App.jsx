@@ -16,16 +16,10 @@ import todo from '../../styles/todoInput.module.css'
 class App extends PureComponent {
   state = {
     nextId: 1,
-    doneCounter: 0
   }
 
   render() {
-    const doneCounter = () => {this.props.todoList.map(todoItem => (
-      todoItem.done === true
-       ? {doneC : this.state.doneC+1}
-      : this.state.doneC
-      )
-    )}
+    const allTaskDone = this.props.todoList.filter(todoItem => todoItem.done)
     // const doneCounter = f(this.props.todoList); посчитать из состояния и убрать из конекта, убрать this.state
     //диструкруризация this.props
     return (
@@ -48,7 +42,7 @@ class App extends PureComponent {
           <div className={ todo.counter }>
             Done
             <NBSP/>
-            { this.state.doneC }
+            { allTaskDone.length }
             <NBSP/>
             of
             <NBSP/>
