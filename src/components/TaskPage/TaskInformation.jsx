@@ -1,20 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-const TaskInformation = ({todoList}) => {
+const TaskInformation = ({ddd}) => {
   return (
-    <div>
-      {todoList.length}
-    </div>
+    <>
+      <h2>Task Information</h2>
+      <div>
+        <p>{ddd}</p>
+      </div>
+      <Link to="/todo">Todo List</Link>
+    </>
   )
 }
 
 
-const mapToState = (state) => {
-  return {todoList: state};
-}
-
-const WrappedTaskInformation = connect(mapToState)(TaskInformation)
-
-export default WrappedTaskInformation;
+export default connect(state => {
+  return {
+    todoList: state.todoList
+  }
+})(TaskInformation)
 

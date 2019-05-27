@@ -10,14 +10,14 @@ const Home = ({todoList}) => {
   console.log(todoList)
   const allTask = todoList.length;
   console.log(allTask)
-  // const allTaskDone = todoList.filter(todo => todo.done)
+  const allTaskDone = todoList.filter(todo => todo.done)
   return (
       <>
         <h1>Привет, Медвед!</h1>
         <div className={ todo.counter }>
           Done
           <NBSP/>
-
+          {allTaskDone.length}
           <NBSP/>
           of
           <NBSP/>
@@ -30,10 +30,8 @@ const Home = ({todoList}) => {
 }
 
 
-const mapToState = (state) => {
-  return {todoList: state};
-}
-
-const WrappedHome = connect(mapToState)(Home)
-
-export default WrappedHome;
+export default connect(state => {
+  return {
+    todoList: state.todoList
+  }
+})(Home)

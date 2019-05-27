@@ -34,7 +34,7 @@ class TodoItem extends React.PureComponent {
             DONE
           </button>
         }
-          <Link to="/task/test">{text}</Link>
+        <Link to={ 'task-item/'+id }>{text}</Link>
         <button
           className={todo.delete}
           onClick={removeTodo}>
