@@ -1,9 +1,7 @@
-function crossOutTodo(todoList, doneCounter, nextId) {
+function crossOutTodo(todoList) {
   return {
     type: 'CROSS_OUT_TODO',
-    payload: {
-      todoList, doneCounter, nextId
-    }
+    payload: todoList
   }
 }
 

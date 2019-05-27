@@ -1,9 +1,7 @@
-function removeTodo(todoList, nextId, doneCounter) {
+function removeTodo( todoList ) {
   return {
     type: 'REMOVE_TODO',
-    payload: {
-      todoList, nextId, doneCounter
-    }
+    payload: todoList,
   }
 }
 

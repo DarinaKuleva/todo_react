@@ -15,11 +15,17 @@ import todo from '../../styles/todoInput.module.css'
 
 class App extends PureComponent {
   state = {
-    doneCounter: 0,
     nextId: 1,
+    doneCounter: 0
   }
 
   render() {
+    const doneCounter = () => {this.props.todoList.map(todoItem => (
+      todoItem.done === true
+       ? {doneC : this.state.doneC+1}
+      : this.state.doneC
+      )
+    )}
     // const doneCounter = f(this.props.todoList); посчитать из состояния и убрать из конекта, убрать this.state
     //диструкруризация this.props
     return (
@@ -42,7 +48,7 @@ class App extends PureComponent {
           <div className={ todo.counter }>
             Done
             <NBSP/>
-            { this.state.doneCounter }
+            { this.state.doneC }
             <NBSP/>
             of
             <NBSP/>
@@ -74,40 +80,30 @@ class App extends PureComponent {
   }
 
   crossOutTodo = (id) => {
-    const todoList = this.state.todoList.map(todoItem => (
-      id === todoItem.id
-        ? { ...todoItem, done: true, doneAtDate: new Date() }
-        : todoItem
+    const todoList = this.props.todoList.map(todoItem => (
+        id === todoItem.id
+          ? { ...todoItem, done: true, doneAtDate: new Date() }
+          : todoItem
       ),
     )
-    this.setState( {
-      todoList,
-      doneCounter: this.state.doneCounter + 1,
-    } )
-    this.props.dispatch(crossOutTodo(this.state.todoList, this.state.doneCounter))
+    this.props.dispatch(crossOutTodo(todoList))
   }
 
   removeTodo = ( id ) => {
-    this.setState( {
-      todoList: this.state.todoList.filter( todo => todo.id !== id ),
-    } )
-    this.props.dispatch(removeTodo(this.state.todoList))
+    const todoList = this.props.todoList.filter( todo => todo.id !== id )
+    this.props.dispatch(removeTodo(todoList))
   }
 
 
   clearAll = () => {
-    this.setState( {
-      todoList: [],
-      doneCounter: 0,
-    } )
-    this.props.dispatch(clearAll(this.state.todoList, this.state.doneCounter))
+    const todoList = []
+    this.props.dispatch(clearAll(todoList))
   };
 }
 
 //переделать экспорт-вынести стэйт
 export default connect(state => {
   return {
-    todoList: state.todoList,
-    doneCounter: state.doneCounter
+    todoList: state.todoList
   }
 })(App)
