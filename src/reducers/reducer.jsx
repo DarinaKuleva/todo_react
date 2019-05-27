@@ -4,12 +4,15 @@ export default function reducer(state, action) {
       todoList: [...state.todoList, action.payload]
     }
   }
-  if (action.type === 'CLEAR_ALL' || action.type === 'REMOVE_TODO' || action.type === 'CROSS_OUT_TODO') {
+  if (action.type === 'REMOVE_TODO') {
+    return {
+      todoList: [...state.todoList, action.payload]
+    }
+  }
+  if (action.type === 'CLEAR_ALL' || action.type === 'CROSS_OUT_TODO') {
     return {
 
-      todoList: action.payload.todoList,
-      doneCounter: action.payload.doneCounter,
-      nextId:action.payload.nextId
+      todoList: [...state.todoList, action.payload]
 
     };
   }

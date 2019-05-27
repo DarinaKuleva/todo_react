@@ -11,7 +11,7 @@ const Home = () => {
         <div className={ todo.counter }>
           Done
           <NBSP/>
-          { this.props.doneCounter }
+          <p>тут будет done counter</p>
           <NBSP/>
           of
           <NBSP/>
