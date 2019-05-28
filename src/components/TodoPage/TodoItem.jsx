@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import todo from '../../styles/todoInput.module.css'
 import '../../styles/crossTodo.css'
+import { connect } from 'react-redux'
 
 
 class TodoItem extends React.PureComponent {
@@ -28,13 +29,13 @@ class TodoItem extends React.PureComponent {
     return (
       <div className={done ? 'done' : ''}>
         { !done &&
-          <button
-            className={todo.delete}
-            onClick={crossOutTodo}>
-            DONE
-          </button>
+        <button
+          className={todo.delete}
+          onClick={crossOutTodo}>
+          DONE
+        </button>
         }
-        <Link to={ 'task-item/'+id }>{text}</Link>
+        <Link to={ 'task-item/'+id } params={{taskId: id}}>{text}</Link>
         <button
           className={todo.delete}
           onClick={removeTodo}>
@@ -45,4 +46,11 @@ class TodoItem extends React.PureComponent {
   }
 }
 
-export default TodoItem
+function mapStateToProps(state) {
+  return {
+    todoList: state.todoList
+  }
+}
+
+export default connect(mapStateToProps)(TodoItem)
+

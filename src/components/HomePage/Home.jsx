@@ -5,11 +5,8 @@ import { connect } from 'react-redux'
 
 import todo from '../../styles/todoInput.module.css'
 
-
 const Home = ({todoList}) => {
-  console.log(todoList)
   const allTask = todoList.length;
-  console.log(allTask)
   const allTaskDone = todoList.filter(todo => todo.done)
   return (
       <>
@@ -28,7 +25,6 @@ const Home = ({todoList}) => {
     )
 
 }
-
 
 export default connect(state => {
   return {

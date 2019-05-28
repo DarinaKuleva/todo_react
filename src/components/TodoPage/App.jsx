@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import ClearButton from './ClearButton'
-import { NBSP } from '../Additions/NBSP'
 import clearAll from '../../actions/clearAll'
 import addTodo from '../../actions/addTodo'
 import crossOutTodo from '../../actions/crossOutTodo'
@@ -19,8 +18,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const allTaskDone = this.props.todoList.filter(todoItem => todoItem.done)
-    // const doneCounter = f(this.props.todoList); посчитать из состояния и убрать из конекта, убрать this.state
+    //убрать this.state
     //диструкруризация this.props
     return (
       <div>
@@ -39,15 +37,6 @@ class App extends PureComponent {
               />
             ) ) }
           </ul>
-          <div className={ todo.counter }>
-            Done
-            <NBSP/>
-            { allTaskDone.length }
-            <NBSP/>
-            of
-            <NBSP/>
-            { this.props.todoList.length }
-          </div>
           <ClearButton
             clearAll={ this.clearAll }/>
         </div>
@@ -95,9 +84,17 @@ class App extends PureComponent {
   };
 }
 
-//переделать экспорт-вынести стэйт
-export default connect(state => {
+function mapStateToProps(state) {
   return {
     todoList: state.todoList
   }
-})(App)
+}
+
+export default connect(mapStateToProps)(App)
+
+//переделать экспорт-вынести стэйт
+// export default connect(state => {
+//   return {
+//     todoList: state.todoList
+//   }
+// })(App)
