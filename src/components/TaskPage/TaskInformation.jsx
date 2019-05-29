@@ -45,7 +45,7 @@ class TaskInformation extends React.PureComponent {
     return (
       <>
         <h2>Task Information</h2>
-        <div key={+params.id}>
+        <div key={openTask.id}>
           {
             openTask.map(todoItem =>
               <div >

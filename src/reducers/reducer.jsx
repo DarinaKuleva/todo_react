@@ -3,22 +3,22 @@ export default function reducer( state, action ) {
     case 'ADD_TODO':
       return {
         todoList: [...state.todoList, action.payload],
-        nextId: state.nextId+1
+        nextId: state.nextId + 1,
       }
-    case 'REMOVE_TODO':
+    case 'REMOVE_TODO' || 'FILTER_DONE' || 'FILTER_FAST':
       return {
         todoList: action.payload,
-        nextId: state.nextId
+        nextId: state.nextId,
+      }
+    case 'CROSS_OUT_TODO' || 'MAKE_FAST':
+      return {
+        todoList: action.payload,
+        nextId: state.nextId,
       }
     case 'CLEAR_ALL':
       return {
         todoList: [],
-        nextId: 1
-      }
-    case 'CROSS_OUT_TODO':
-      return {
-        todoList: action.payload,
-        nextId: state.nextId
+        nextId: 1,
       }
     default:
       return state

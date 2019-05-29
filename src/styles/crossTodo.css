@@ -1,3 +1,37 @@
 .done {
   text-decoration: line-through;
 }
+
+.fast {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  padding: 14px 16px;
+
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+
+  background: #e2223b;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.input {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  padding: 12px 14px;
+
+  color: black;
+  font-weight: 700;
+  text-decoration: none;
+
+  background: #68edca;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+
+  transition: 0.2s;
+}

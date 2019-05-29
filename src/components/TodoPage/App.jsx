@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import ClearButton from './ClearButton'
+import Filter from './Filter'
 import clearAll from '../../actions/clearAll'
 import addTodo from '../../actions/addTodo'
 import crossOutTodo from '../../actions/crossOutTodo'
@@ -10,6 +11,7 @@ import removeTodo from '../../actions/removeTodo'
 import { connect } from 'react-redux'
 
 import header from '../../styles/header.module.css'
+import filterFast from '../../actions/filterFast'
 
 class App extends PureComponent {
   render() {
@@ -30,16 +32,32 @@ class App extends PureComponent {
                 todo={ todo }
                 key={ todo.id }
                 removeTodo={ () => this.removeTodo( todo.id ) }
-                crossOutTodo={ () => this.crossOutTodo( todo.id ) }
+                crossOutTodo={ () => this.crossOutTodo( todo.id )}
+                makeFast={ () => this. makeFast( todo.id )}
               />
             ) ) }
           </ul>
+          <div>
+            <Filter
+              filterDone={ this.filterDone }
+              filterFast={ this.filterFast }/>
+          </div>
           <ClearButton
             clearAll={ this.clearAll }/>
+          <Link to="/">HOME</Link>
         </div>
-        <Link to="/">HOME</Link>
       </div>
     )
+  }
+
+  filterDone = ( ) => {
+    const todoList = this.props.todoList.filter( todo => todo.done === true )
+    this.props.dispatch(removeTodo(todoList))
+  }
+
+  filterFast = () => {
+    const todoList = this.props.todoList.filter( todo => todo.fast === true )
+    this.props.dispatch(removeTodo(todoList))
   }
 
   addTodo = ( todoText ) => {
@@ -47,6 +65,7 @@ class App extends PureComponent {
       id: this.props.nextId,
       text: todoText,
       done: false,
+      fast: false,
       createdAtDate: new Date(),
       doneAtDate: null,
     }
@@ -67,6 +86,16 @@ class App extends PureComponent {
     const todoList = this.props.todoList.map(todoItem => (
         id === todoItem.id
           ? { ...todoItem, done: true, doneAtDate: new Date() }
+          : todoItem
+      ),
+    )
+    this.props.dispatch(crossOutTodo(todoList))
+  }
+
+  makeFast = (id) => {
+    const todoList = this.props.todoList.map(todoItem => (
+        id === todoItem.id
+          ? { ...todoItem, fast: true }
           : todoItem
       ),
     )
