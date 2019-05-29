@@ -1,9 +1,7 @@
 function filterDone(todoList) {
   return {
     type: 'FILTER_DONE',
-    payload: {
-      todoList
-    }
+    payload: todoList
   }
 }
 

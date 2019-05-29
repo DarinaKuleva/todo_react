@@ -11,7 +11,6 @@ import removeTodo from '../../actions/removeTodo'
 import { connect } from 'react-redux'
 
 import header from '../../styles/header.module.css'
-import filterFast from '../../actions/filterFast'
 
 class App extends PureComponent {
   render() {
@@ -20,7 +19,7 @@ class App extends PureComponent {
     } = this.props
 
     return (
-      <div>
+      <>
         <h1 className={ header.title }>
           My ToDo List
         </h1>
@@ -46,11 +45,11 @@ class App extends PureComponent {
             clearAll={ this.clearAll }/>
           <Link to="/">HOME</Link>
         </div>
-      </div>
+      </>
     )
   }
 
-  filterDone = ( ) => {
+  filterDone = () => {
     const todoList = this.props.todoList.filter( todo => todo.done === true )
     this.props.dispatch(removeTodo(todoList))
   }
