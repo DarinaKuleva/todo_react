@@ -10,16 +10,13 @@ import removeTodo from '../../actions/removeTodo'
 import { connect } from 'react-redux'
 
 import header from '../../styles/header.module.css'
-import todo from '../../styles/todoInput.module.css'
 
 class App extends PureComponent {
-  state = {
-    nextId: 1,
-  }
-
   render() {
-    //убрать this.state
-    //диструкруризация this.props
+    const {
+      todoList
+    } = this.props
+
     return (
       <div>
         <h1 className={ header.title }>
@@ -28,7 +25,7 @@ class App extends PureComponent {
         <div className={ header.input }>
           <TodoInput addTodo={ this.addTodo }/>
           <ul>
-            { this.props.todoList.map( todo => (
+            { todoList.map( todo => (
               <TodoItem
                 todo={ todo }
                 key={ todo.id }
@@ -47,19 +44,23 @@ class App extends PureComponent {
 
   addTodo = ( todoText ) => {
     const newTask = {
-      id: this.state.nextId,
+      id: this.props.nextId,
       text: todoText,
       done: false,
       createdAtDate: new Date(),
       doneAtDate: null,
     }
-
-    this.setState( ( state ) => {
-      return {
-        nextId: state.nextId + 1
-      }
-    } )
     this.props.dispatch(addTodo(newTask))
+  }
+
+  removeTodo = ( id ) => {
+    const todoList = this.props.todoList.filter( todo => todo.id !== id )
+    this.props.dispatch(removeTodo(todoList))
+  }
+
+  clearAll = () => {
+    const todoList = []
+    this.props.dispatch(clearAll(todoList))
   }
 
   crossOutTodo = (id) => {
@@ -71,30 +72,13 @@ class App extends PureComponent {
     )
     this.props.dispatch(crossOutTodo(todoList))
   }
-
-  removeTodo = ( id ) => {
-    const todoList = this.props.todoList.filter( todo => todo.id !== id )
-    this.props.dispatch(removeTodo(todoList))
-  }
-
-
-  clearAll = () => {
-    const todoList = []
-    this.props.dispatch(clearAll(todoList))
-  };
 }
 
 function mapStateToProps(state) {
   return {
-    todoList: state.todoList
+    todoList: state.todoList,
+    nextId: state.nextId
   }
 }
 
 export default connect(mapStateToProps)(App)
-
-//переделать экспорт-вынести стэйт
-// export default connect(state => {
-//   return {
-//     todoList: state.todoList
-//   }
-// })(App)

@@ -26,8 +26,11 @@ const Home = ({todoList}) => {
 
 }
 
-export default connect(state => {
+function mapStateToProps(state) {
   return {
-    todoList: state.todoList
+    todoList: state.todoList,
+    nextId: state.nextId
   }
-})(Home)
+}
+
+export default connect(mapStateToProps)(Home)
