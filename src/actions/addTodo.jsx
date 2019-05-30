@@ -1,7 +1,7 @@
-function addTodo(newTask) {
+function addTodo(todoText) {
   return {
     type: 'ADD_TODO',
-    payload: newTask
+    payload: todoText
   }
 }
 

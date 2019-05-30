@@ -1,7 +1,7 @@
-function removeTodo( todoList ) {
+function removeTodo( id ) {
   return {
     type: 'REMOVE_TODO',
-    payload: todoList
+    payload: id
   }
 }
 

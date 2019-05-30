@@ -1,7 +1,7 @@
-function makeFast(todoList) {
+function makeFast(id) {
   return {
     type: 'MAKE_FAST',
-    payload: todoList
+    payload: id
   }
 }
 

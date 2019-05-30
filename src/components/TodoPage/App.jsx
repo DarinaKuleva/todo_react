@@ -11,6 +11,7 @@ import removeTodo from '../../actions/removeTodo'
 import { connect } from 'react-redux'
 
 import header from '../../styles/header.module.css'
+import makeFast from '../../actions/makeFast'
 
 class App extends PureComponent {
   state = {
@@ -77,20 +78,11 @@ class App extends PureComponent {
   }
 
   addTodo = ( todoText ) => {
-    const newTask = {
-      id: this.props.nextId,
-      text: todoText,
-      done: false,
-      fast: false,
-      createdAtDate: new Date(),
-      doneAtDate: null,
-    }
-    this.props.dispatch(addTodo(newTask))
+    this.props.dispatch(addTodo(todoText))
   }
 
   removeTodo = ( id ) => {
-    const todoList = this.props.todoList.filter( todo => todo.id !== id )
-    this.props.dispatch(removeTodo(todoList))
+    this.props.dispatch(removeTodo(id))
   }
 
   clearAll = () => {
@@ -98,23 +90,11 @@ class App extends PureComponent {
   }
 
   crossOutTodo = (id) => {
-    const todoList = this.props.todoList.map(todoItem => (
-        id === todoItem.id
-          ? { ...todoItem, done: true, doneAtDate: new Date() }
-          : todoItem
-      ),
-    )
-    this.props.dispatch(crossOutTodo(todoList))
+    this.props.dispatch(crossOutTodo(id))
   }
 
   makeFast = (id) => {
-    const todoList = this.props.todoList.map(todoItem => (
-        id === todoItem.id
-          ? { ...todoItem, fast: true }
-          : todoItem
-      ),
-    )
-    this.props.dispatch(crossOutTodo(todoList))
+    this.props.dispatch(makeFast(id))
   }
 }
 
