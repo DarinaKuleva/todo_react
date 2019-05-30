@@ -1,7 +1,7 @@
 import React from 'react'
 import todo from '../../styles/todoInput.module.css'
 
-const Filter = ( { filterDone, filterFast } ) => {
+const Filter = ( { filterDone, filterFast, filterAll } ) => {
   return (
     <>
       <button
@@ -13,6 +13,11 @@ const Filter = ( { filterDone, filterFast } ) => {
         onClick={ filterFast }
         className={ todo.input }>
         FILTER FAST
+      </button>
+      <button
+        onClick={ filterAll }
+        className={ todo.input }>
+        ALL
       </button>
     </>
   )

@@ -13,10 +13,13 @@ import { connect } from 'react-redux'
 import header from '../../styles/header.module.css'
 
 class App extends PureComponent {
+  state = {
+    filter: 'all'
+  }
+
   render() {
-    const {
-      todoList
-    } = this.props
+
+    const todoList = this.getTodoList()
 
     return (
       <>
@@ -39,7 +42,8 @@ class App extends PureComponent {
           <div>
             <Filter
               filterDone={ this.filterDone }
-              filterFast={ this.filterFast }/>
+              filterFast={ this.filterFast }
+              filterAll={ this.filterAll }/>
           </div>
           <ClearButton
             clearAll={ this.clearAll }/>
@@ -49,14 +53,27 @@ class App extends PureComponent {
     )
   }
 
+  getTodoList = () => {
+    switch (this.state.filter) {
+      case 'all':
+        return this.props.todoList
+      case 'done':
+        return this.props.todoList.filter(todoItem => todoItem.done)
+      case 'fast':
+        return this.props.todoList.filter(todoItem => todoItem.fast)
+    }
+  }
+
+  filterAll = () => {
+    this.setState({filter: 'all'})
+  }
+
   filterDone = () => {
-    const todoList = this.props.todoList.filter( todo => todo.done === true )
-    this.props.dispatch(removeTodo(todoList))
+    this.setState({filter: 'done'})
   }
 
   filterFast = () => {
-    const todoList = this.props.todoList.filter( todo => todo.fast === true )
-    this.props.dispatch(removeTodo(todoList))
+    this.setState({filter: 'fast'})
   }
 
   addTodo = ( todoText ) => {
@@ -77,8 +94,7 @@ class App extends PureComponent {
   }
 
   clearAll = () => {
-    const todoList = []
-    this.props.dispatch(clearAll(todoList))
+    this.props.dispatch(clearAll())
   }
 
   crossOutTodo = (id) => {

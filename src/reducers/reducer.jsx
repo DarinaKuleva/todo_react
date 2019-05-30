@@ -5,15 +5,20 @@ export default function reducer( state, action ) {
         todoList: [...state.todoList, action.payload],
         nextId: state.nextId + 1,
       }
-    case 'REMOVE_TODO' || 'FILTER_DONE' || 'FILTER_FAST':
+    case 'REMOVE_TODO':
       return {
-        todoList: action.payload,
-        nextId: state.nextId,
+        ...state,
+        todoList: action.payload
       }
-    case 'CROSS_OUT_TODO' || 'MAKE_FAST':
+    case 'CROSS_OUT_TODO':
       return {
-        todoList: action.payload,
-        nextId: state.nextId,
+        ...state,
+        todoList: action.payload
+      }
+    case 'MAKE_FAST':
+      return {
+        ...state,
+        todoList: action.payload
       }
     case 'CLEAR_ALL':
       return {
