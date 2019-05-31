@@ -3,96 +3,106 @@ import { Link } from 'react-router-dom'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import ClearButton from './ClearButton'
-import { NBSP } from '../Additions/NBSP'
+import Filter from './Filter'
+import clearAll from '../../actions/clearAll'
+import addTodo from '../../actions/addTodo'
+import crossOutTodo from '../../actions/crossOutTodo'
+import removeTodo from '../../actions/removeTodo'
+import makeFast from '../../actions/makeFast'
+import {FILTER_MODE_ALL, FILTER_MODE_DONE, FILTER_MODE_FAST } from '../../constants/index'
+import { connect } from 'react-redux'
 
 import header from '../../styles/header.module.css'
-import todo from '../../styles/todoInput.module.css'
 
 class App extends PureComponent {
   state = {
-    todoList: [],
-    doneCounter: 0,
-    nextId: 1,
+    filter: FILTER_MODE_ALL
   }
 
   render() {
+
+    const todoList = this.getTodoList()
+
     return (
-      <div>
+      <>
         <h1 className={ header.title }>
           My ToDo List
         </h1>
         <div className={ header.input }>
           <TodoInput addTodo={ this.addTodo }/>
           <ul>
-            { this.state.todoList.map( todo => (
+            { todoList.map( todo => (
               <TodoItem
                 todo={ todo }
                 key={ todo.id }
                 removeTodo={ () => this.removeTodo( todo.id ) }
-                crossOutTodo={ () => this.crossOutTodo( todo.id ) }
+                crossOutTodo={ () => this.crossOutTodo( todo.id )}
+                makeFast={ () => this. makeFast( todo.id )}
               />
             ) ) }
           </ul>
-          <div className={ todo.counter }>
-            Done
-            <NBSP/>
-            { this.state.doneCounter }
-            <NBSP/>
-            of
-            <NBSP/>
-            { this.state.todoList.length }
+          <div>
+            <Filter
+              filterDone={ this.filterDone }
+              filterFast={ this.filterFast }
+              filterAll={ this.filterAll }/>
           </div>
           <ClearButton
             clearAll={ this.clearAll }/>
+          <Link to="/">HOME</Link>
         </div>
-        <Link to="/">HOME</Link>
-      </div>
+      </>
     )
+  }
+
+  getTodoList = () => {
+    switch (this.state.filter) {
+      case FILTER_MODE_ALL:
+        return this.props.todoList
+      case FILTER_MODE_DONE:
+        return this.props.todoList.filter(todoItem => todoItem.done)
+      case FILTER_MODE_FAST:
+        return this.props.todoList.filter(todoItem => todoItem.fast)
+    }
+  }
+
+  filterAll = () => {
+    this.setState({filter: FILTER_MODE_ALL})
+  }
+
+  filterDone = () => {
+    this.setState({filter: FILTER_MODE_DONE})
+  }
+
+  filterFast = () => {
+    this.setState({filter: FILTER_MODE_FAST})
   }
 
   addTodo = ( todoText ) => {
-    const newTask = {
-      id: this.state.nextId,
-      text: todoText,
-      done: false,
-      createdAtDate: new Date(),
-      doneAtDate: null,
-    }
-
-    this.setState( ( state ) => {
-      return {
-        todoList: [...state.todoList, newTask],
-        nextId: state.nextId + 1,
-      }
-    } )
-  }
-
-  crossOutTodo = (id) => {
-    const todoList = this.state.todoList.map(todoItem => (
-      id === todoItem.id
-        ? { ...todoItem, done: true, doneAtDate: new Date() }
-        : todoItem
-      ),
-    )
-    this.setState( {
-      todoList,
-      doneCounter: this.state.doneCounter + 1,
-    } )
+    this.props.dispatch(addTodo(todoText))
   }
 
   removeTodo = ( id ) => {
-    this.setState( {
-      todoList: this.state.todoList.filter( todo => todo.id !== id ),
-    } )
+    this.props.dispatch(removeTodo(id))
   }
 
-
   clearAll = () => {
-    this.setState( {
-      todoList: [],
-      doneCounter: 0,
-    } )
+    this.props.dispatch(clearAll())
+  }
+
+  crossOutTodo = (id) => {
+    this.props.dispatch(crossOutTodo(id))
+  }
+
+  makeFast = (id) => {
+    this.props.dispatch(makeFast(id))
   }
 }
 
-export default App
+function mapStateToProps(state) {
+  return {
+    todoList: state.todoList
+  }
+}
+
+export default connect(mapStateToProps)(App)

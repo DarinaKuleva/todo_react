@@ -15,7 +15,7 @@ class TodoInput extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <>
         <input
           placeholder="I want to do..."
           className={todo.text}
@@ -30,7 +30,7 @@ class TodoInput extends React.PureComponent {
           >
           Do It!
         </button>
-      </div>
+      </>
     )
   }
 
