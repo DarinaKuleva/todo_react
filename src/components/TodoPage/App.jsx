@@ -8,14 +8,15 @@ import clearAll from '../../actions/clearAll'
 import addTodo from '../../actions/addTodo'
 import crossOutTodo from '../../actions/crossOutTodo'
 import removeTodo from '../../actions/removeTodo'
+import makeFast from '../../actions/makeFast'
+import {FILTER_MODE_ALL, FILTER_MODE_DONE, FILTER_MODE_FAST } from '../../constants/index'
 import { connect } from 'react-redux'
 
 import header from '../../styles/header.module.css'
-import makeFast from '../../actions/makeFast'
 
 class App extends PureComponent {
   state = {
-    filter: 'FILTER_MODE_ALL'
+    filter: FILTER_MODE_ALL
   }
 
   render() {
@@ -56,25 +57,25 @@ class App extends PureComponent {
 
   getTodoList = () => {
     switch (this.state.filter) {
-      case 'FILTER_MODE_ALL':
+      case FILTER_MODE_ALL:
         return this.props.todoList
-      case 'FILTER_MODE_DONE':
+      case FILTER_MODE_DONE:
         return this.props.todoList.filter(todoItem => todoItem.done)
-      case 'FILTER_MODE_FAST':
+      case FILTER_MODE_FAST:
         return this.props.todoList.filter(todoItem => todoItem.fast)
     }
   }
 
   filterAll = () => {
-    this.setState({filter: 'FILTER_MODE_ALL'})
+    this.setState({filter: FILTER_MODE_ALL})
   }
 
   filterDone = () => {
-    this.setState({filter: 'FILTER_MODE_DONE'})
+    this.setState({filter: FILTER_MODE_DONE})
   }
 
   filterFast = () => {
-    this.setState({filter: 'FILTER_MODE_FAST'})
+    this.setState({filter: FILTER_MODE_FAST})
   }
 
   addTodo = ( todoText ) => {

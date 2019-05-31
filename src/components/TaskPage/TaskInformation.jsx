@@ -25,7 +25,7 @@ class TaskInformation extends React.PureComponent {
     })
 
     const createdDate = openTask.map(date =>
-      <div>
+      <div key={date.id}>
         {date.createdAtDate.getDate()}.{date.createdAtDate.getMonth() + 1}
         <NBSP/>
         at
@@ -41,7 +41,7 @@ class TaskInformation extends React.PureComponent {
     )
 
     const doneTime = openTask.map(date =>
-      <div>
+      <div key={date.id}>
         {date.done
           ? `task done ${ date.doneAtDate.getDate() }.${ (date.createdAtDate.getMonth() + 1) } 
             at ${ date.doneAtDate.getHours() } o'clock ${ date.doneAtDate.getMinutes() } minutes`
@@ -52,10 +52,10 @@ class TaskInformation extends React.PureComponent {
     return (
       <>
         <h2>Task Information</h2>
-        <div key={openTask.id}>
+        <div>
           {
             openTask.map(todoItem =>
-              <div >
+              <div key={todoItem.id}>
                 <div>
                   {todoItem.text}
                 </div>
@@ -79,8 +79,7 @@ class TaskInformation extends React.PureComponent {
 
 function mapStateToProps(state) {
   return {
-    todoList: state.todoList,
-    nextId: state.nextId,
+    todoList: state.todoList
   }
 }
 

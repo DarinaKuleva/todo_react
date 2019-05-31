@@ -8,19 +8,19 @@ import PropTypes from 'prop-types'
 
 const Home = ({todoList}) => {
 
-  const taskNumber = todoList.length;
-  const taskDoneNumber = todoList.filter(todo => todo.done).length
+  const taskAmount = todoList.length;
+  const taskDoneAmount = todoList.filter(todo => todo.done).length
   return (
       <>
         <h1>Привет, Медвед!</h1>
         <div className={ todo.counter }>
           Done
           <NBSP/>
-          {taskDoneNumber}
+          {taskDoneAmount}
           <NBSP/>
           of
           <NBSP/>
-          { taskNumber }
+          { taskAmount }
         </div>
         <Link to="/todo">TODO</Link>
       </>
@@ -29,8 +29,7 @@ const Home = ({todoList}) => {
 }
 
 Home.propTypes = {
-  taskNumber: PropTypes.number.isRequired,
-  taskDoneNumber: PropTypes.number.isRequired
+  todoList: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
