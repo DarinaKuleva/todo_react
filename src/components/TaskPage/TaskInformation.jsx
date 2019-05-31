@@ -2,18 +2,26 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { NBSP } from '../Additions/NBSP'
+import PropTypes from 'prop-types'
 
 class TaskInformation extends React.PureComponent {
+
+  static propTypes = {
+    todoList: PropTypes.array.isRequired
+  };
+
   render() {
     const {
       todoList,
       match: {
-        params,
+        params: {
+          id
+        }
       },
     } = this.props
 
     const openTask = todoList.filter(todoItem => {
-      return todoItem.id === +params.id
+      return todoItem.id === +id
     })
 
     const createdDate = openTask.map(date =>
@@ -32,12 +40,11 @@ class TaskInformation extends React.PureComponent {
       </div>,
     )
 
-    const doneDate = openTask.map(date =>
+    const doneTime = openTask.map(date =>
       <div>
         {date.done
-          ? 'task done ' + date.doneAtDate.getDate() + '.' + (date.createdAtDate.getMonth() + 1)
-          + ' at ' + date.doneAtDate.getHours() + ' o\'clock '
-          + date.doneAtDate.getMinutes() + ' minutes'
+          ? `task done ${ date.doneAtDate.getDate() }.${ (date.createdAtDate.getMonth() + 1) } 
+            at ${ date.doneAtDate.getHours() } o'clock ${ date.doneAtDate.getMinutes() } minutes`
           : 'task not completed'}
       </div>,
     )
@@ -58,7 +65,7 @@ class TaskInformation extends React.PureComponent {
                   {createdDate}
                 </div>
                 <div>
-                  {doneDate}
+                  {doneTime}
                 </div>
               </div>
             )

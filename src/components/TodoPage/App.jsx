@@ -15,7 +15,7 @@ import makeFast from '../../actions/makeFast'
 
 class App extends PureComponent {
   state = {
-    filter: 'all'
+    filter: 'FILTER_MODE_ALL'
   }
 
   render() {
@@ -56,25 +56,25 @@ class App extends PureComponent {
 
   getTodoList = () => {
     switch (this.state.filter) {
-      case 'all':
+      case 'FILTER_MODE_ALL':
         return this.props.todoList
-      case 'done':
+      case 'FILTER_MODE_DONE':
         return this.props.todoList.filter(todoItem => todoItem.done)
-      case 'fast':
+      case 'FILTER_MODE_FAST':
         return this.props.todoList.filter(todoItem => todoItem.fast)
     }
   }
 
   filterAll = () => {
-    this.setState({filter: 'all'})
+    this.setState({filter: 'FILTER_MODE_ALL'})
   }
 
   filterDone = () => {
-    this.setState({filter: 'done'})
+    this.setState({filter: 'FILTER_MODE_DONE'})
   }
 
   filterFast = () => {
-    this.setState({filter: 'fast'})
+    this.setState({filter: 'FILTER_MODE_FAST'})
   }
 
   addTodo = ( todoText ) => {
@@ -100,8 +100,7 @@ class App extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    todoList: state.todoList,
-    nextId: state.nextId
+    todoList: state.todoList
   }
 }
 

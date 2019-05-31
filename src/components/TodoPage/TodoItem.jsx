@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 import todo from '../../styles/todoInput.module.css'
 import '../../styles/crossTodo.css'
-import makeFast from '../../actions/makeFast'
 
 
 class TodoItem extends React.PureComponent {
@@ -43,7 +42,7 @@ class TodoItem extends React.PureComponent {
           onClick={makeFast}>
           FAST!
         </button>
-        <Link to={ 'task-item/'+id }>{text}</Link>
+        <Link to={`task-item/${id}`}>{text}</Link>
         <button
           className={todo.delete}
           onClick={removeTodo}>
@@ -54,11 +53,4 @@ class TodoItem extends React.PureComponent {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    todoList: state.todoList,
-    nextId: state.nextId
-  }
-}
-
-export default connect(mapStateToProps)(TodoItem)
+export default connect()(TodoItem)

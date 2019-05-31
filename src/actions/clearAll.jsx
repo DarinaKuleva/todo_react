@@ -1,7 +1,6 @@
-function clearAll(todoList) {
+function clearAll() {
   return {
-    type: 'CLEAR_ALL',
-    payload: todoList
+    type: 'CLEAR_ALL'
   }
 }
 

@@ -4,27 +4,34 @@ import { NBSP } from '../Additions/NBSP'
 import { connect } from 'react-redux'
 
 import todo from '../../styles/todoInput.module.css'
+import PropTypes from 'prop-types'
 
 const Home = ({todoList}) => {
-  const allTask = todoList.length;
-  const allTaskDone = todoList.filter(todo => todo.done)
+
+  const taskNumber = todoList.length;
+  const taskDoneNumber = todoList.filter(todo => todo.done).length
   return (
       <>
         <h1>Привет, Медвед!</h1>
         <div className={ todo.counter }>
           Done
           <NBSP/>
-          {allTaskDone.length}
+          {taskDoneNumber}
           <NBSP/>
           of
           <NBSP/>
-          { allTask }
+          { taskNumber }
         </div>
         <Link to="/todo">TODO</Link>
       </>
     )
 
 }
+
+Home.propTypes = {
+  taskNumber: PropTypes.number.isRequired,
+  taskDoneNumber: PropTypes.number.isRequired
+};
 
 function mapStateToProps(state) {
   return {
